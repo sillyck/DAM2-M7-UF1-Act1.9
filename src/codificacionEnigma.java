@@ -1,6 +1,8 @@
 import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -39,10 +41,29 @@ public class codificacionEnigma extends JFrame{
         entrada.setHorizontalAlignment(SwingConstants.CENTER);
         original.add(entrada);
         
-        codificat.add(new JLabel("Escriu els numeros que codificaran:"));
+        
+        JLabel text = new JLabel("Escriu els numeros que codificaran:");
+        text.setHorizontalAlignment(SwingConstants.CENTER);
+        codificat.add(text);
+                
+        JTextField codificacio1 = new JTextField(3);
+        codificacio1.setHorizontalAlignment(SwingConstants.CENTER);
+        codificat.add(codificacio1);
+        
+        JTextField codificacio2 = new JTextField(3);
+        codificacio2.setHorizontalAlignment(SwingConstants.CENTER);
+        codificat.add(codificacio2);
+        
+        JTextField codificacio3 = new JTextField(3);
+        codificacio3.setHorizontalAlignment(SwingConstants.CENTER);
+        codificat.add(codificacio3);
+        
         
         JButton encriptar = new JButton("Encriptar");
+        encriptar.addActionListener(new encript());
+        
         JButton desencriptar = new JButton("Desencriptar");
+        desencriptar.addActionListener(new decript());
         
         botons.add(encriptar);
         botons.add(desencriptar);
@@ -63,6 +84,26 @@ public class codificacionEnigma extends JFrame{
         container.add(botons);
         container.add(resultat);
         
+	}
+	
+	public class encript implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			
+			
+		}
+		
+	}
+	
+	public class decript implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			
+			
+		}
+		
 	}
 
 }
