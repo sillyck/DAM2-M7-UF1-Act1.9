@@ -19,6 +19,13 @@ public class codificacionEnigma extends JFrame{
 	JPanel resultat = new JPanel();
 	Container container = getContentPane();
 	
+	JTextField entrada = new JTextField();
+	JTextField sortida = new JTextField();
+	
+	JTextField codificacio1 = new JTextField(3);
+	JTextField codificacio2 = new JTextField(3);
+	JTextField codificacio3 = new JTextField(3);
+	
 	public codificacionEnigma() {
 		
         super("Enigma");
@@ -37,7 +44,7 @@ public class codificacionEnigma extends JFrame{
         label1.setHorizontalAlignment(SwingConstants.CENTER);
         original.add(label1);
         
-        JTextField entrada = new JTextField();
+        
         entrada.setHorizontalAlignment(SwingConstants.CENTER);
         original.add(entrada);
         
@@ -46,15 +53,15 @@ public class codificacionEnigma extends JFrame{
         text.setHorizontalAlignment(SwingConstants.CENTER);
         codificat.add(text);
                 
-        JTextField codificacio1 = new JTextField(3);
+        
         codificacio1.setHorizontalAlignment(SwingConstants.CENTER);
         codificat.add(codificacio1);
         
-        JTextField codificacio2 = new JTextField(3);
+        
         codificacio2.setHorizontalAlignment(SwingConstants.CENTER);
         codificat.add(codificacio2);
         
-        JTextField codificacio3 = new JTextField(3);
+        
         codificacio3.setHorizontalAlignment(SwingConstants.CENTER);
         codificat.add(codificacio3);
         
@@ -72,7 +79,6 @@ public class codificacionEnigma extends JFrame{
         label2.setHorizontalAlignment(SwingConstants.CENTER);
         resultat.add(label2);
         
-        JTextField sortida = new JTextField();
         sortida.setHorizontalAlignment(SwingConstants.CENTER);
         sortida.setEditable(false);
         resultat.add(sortida);
@@ -90,7 +96,63 @@ public class codificacionEnigma extends JFrame{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			int cont = 1;
+			String text = entrada.getText();
+			char[] chars = text.toCharArray();
+			char[] solucio = new char[chars.length];
 			
+			int num1 = Integer.parseInt(codificacio1.getText());
+			int num2 = Integer.parseInt(codificacio2.getText());
+			int num3 = Integer.parseInt(codificacio3.getText());
+			
+			int restador, codi=64;
+			
+			for(int i=0; i<text.length(); i++) {
+				
+				switch (cont) {
+				case 1:
+					int ascii1 = (int) chars[i];
+					
+					if((ascii1 + num1)>=90) {
+						restador = ascii1 + num1;
+						restador = restador - ascii1;
+						ascii1 = codi + restador;
+					}
+					solucio[i] = (char) ascii1;
+					cont = 2;
+					break;
+					
+				case 2:
+					int ascii2 = (int) chars[i];
+					
+					if((ascii2 + num1)>=90) {
+						restador = ascii2 + num2;
+						restador = restador - ascii2;
+						ascii2 = codi + restador;
+					}
+					solucio[i] = (char) ascii2;
+					cont = 3;
+					break;
+					
+				case 3:
+					int ascii3 = (int) chars[i];
+					
+					if((ascii3 + num1)>=90) {
+						restador = ascii3 + num3;
+						restador = restador - ascii3;
+						ascii3 = codi + restador;
+					}
+					solucio[i] = (char) ascii3;
+					cont = 1;
+					break;
+
+				default:
+					break;
+				}
+			}
+			
+			String str = new String(solucio);
+			sortida.setText(str);
 			
 		}
 		
